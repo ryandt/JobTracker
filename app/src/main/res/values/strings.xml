@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- App-wide -->
+    <string name="app_name">MVVM Demo</string>
+    <string name="error_http_io">Request failed. Check your network connection.</string>
+    <string name="error_http_server">Request failed. RTAZA servers are down. Try again later.</string>
+    <string name="error_http_unauthorized">Session expired. Please log in again.</string>
+    <string name="error_unknown">Request failed</string>
+    <string name="data_not_available">N/A</string>
+
+    <!-- Job statuses -->
+    <string name="job_status_new">New</string>
+    <string name="job_status_pending">Pending</string>
+    <string name="job_status_declined">Declined</string>
+    <string name="job_status_missed">Missed</string>
+    <string name="job_status_accepted">Accepted</string>
+    <string name="job_status_rejected">Rejected</string>
+    <string name="job_status_en_route">En Route</string>
+    <string name="job_status_on_site">On Site</string>
+    <string name="job_status_completed">Completed</string>
+    <string name="job_status_customer_cancelled">Cancelled</string>
+    <string name="job_status_dispatcher_cancelled">Dispatcher Cancelled</string>
+
+    <!-- Job tasks -->
+    <string name="job_task_carpentry">Carpentry</string>
+    <string name="job_task_paint">Paint</string>
+    <string name="job_task_electrical">Electrical</string>
+    <string name="job_task_plumbing">Plumbing</string>
+    <string name="job_task_hvac">HVAC</string>
+
+    <!-- Job details -->
+    <string name="minutes">%d minutes</string>
+    <string name="eta_now">Due now</string>
+    <string name="eta_negative">Overdue</string>
+    <string name="label_task_type">Task type</string>
+    <string name="label_status">Status</string>
+    <string name="label_worker">Worker</string>
+    <string name="label_eta">ETA</string>
+    <string name="format_city_state">$1%s, $2%s</string>
+
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Core -->
+    <color name="primary">#039be5</color>
+    <color name="primary_dark">#01579b</color>
+    <color name="accent">#ff4081</color>
+    <color name="window_background_light">#ffffff</color>
+    <color name="window_background_main">#e5e5e5</color>
+
+    <!-- Dark text colors for light backgrounds, per MDG: https://material.io/guidelines/style/color.html#color-usability -->
+    <color name="text_dark_primary">#de000000</color> <!-- 87% opacity (item title) -->
+    <color name="text_dark_secondary">#8a000000</color> <!-- 54% opacity (item subtitle) -->
+    <color name="text_dark_tertiary">#61000000</color> <!-- 38% opacity (disabled, hint) -->
+    <color name="list_divider_dark">#33000000</color> <!-- 20% opacity -->
+
+    <!-- Light text colors for dark backgrounds, per MDG: https://material.io/guidelines/style/color.html#color-usability -->
+    <color name="text_light_primary">#ffffff</color> <!-- 100% opacity (item title) -->
+    <color name="text_light_secondary">#b2ffffff</color> <!-- 70% opacity (item subtitle) -->
+    <color name="text_light_tertiary">#80ffffff</color> <!-- 50% opacity (disabled, hint) -->
+    <color name="list_divider_light">#1fffffff</color> <!-- 12% opacity -->
+
+    <!-- Buttons -->
+    <color name="button_light_foreground">#ffffff</color>
+    <color name="disabled_button_background">#0d000000</color> <!-- 5% opacity -->
+    <color name="text_button_disabled">#1f000000</color> <!-- 12% opacity -->
+
+    <!-- Jobs -->
+    <color name="job_eta_inapplicable">#039be5</color>
+    <color name="job_eta_on_time">#43a047</color>
+    <color name="job_eta_late">#fB8c00</color>
+    <color name="job_eta_exceedingly_late">#e53935</color>
+    <color name="job_eta_unknown">#000000</color>
+
+</resources>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/window_background_light"
+    app:cardElevation="@dimen/elevation_card"
+    app:contentPadding="@dimen/spacing_medium">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- TODO: Find a way to center TextViews with ImageView so that if the device's font size increases, the ImageView stays stationary -->
+            <ImageView
+                android:id="@+id/taskBackgroundImageView"
+                android:layout_width="@dimen/image_small"
+                android:layout_height="@dimen/image_small"
+                android:src="@drawable/icon_background_job_status"
+                app:layout_constraintBottom_toTopOf="@id/dividerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:tint="@color/accent" />
+
+            <ImageView
+                android:id="@+id/taskForegroundImageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/taskBackgroundImageView"
+                app:layout_constraintEnd_toEndOf="@id/taskBackgroundImageView"
+                app:layout_constraintStart_toStartOf="@id/taskBackgroundImageView"
+                app:layout_constraintTop_toTopOf="@id/taskBackgroundImageView"
+                tools:src="@drawable/icon_plumbing" />
+
+            <TextView
+                android:id="@+id/addressLine1TextView"
+                style="@style/TextView.Title"
+                android:layout_marginStart="@dimen/spacing_medium"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@+id/addressLine2TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/taskBackgroundImageView"
+                app:layout_constraintTop_toTopOf="@id/taskBackgroundImageView"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="6501 Railroad Ave" />
+
+            <TextView
+                android:id="@+id/addressLine2TextView"
+                style="@style/TextView.Subtitle"
+                android:layout_marginStart="@dimen/spacing_medium"
+                app:layout_constraintBottom_toBottomOf="@id/taskBackgroundImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/taskBackgroundImageView"
+                app:layout_constraintTop_toBottomOf="@id/addressLine1TextView"
+                tools:text="Twin Peaks, WA" />
+
+            <View
+                android:id="@+id/dividerView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_divider"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@color/list_divider_dark"
+                app:layout_constraintTop_toBottomOf="@id/taskBackgroundImageView" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/detailsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/spacing_medium"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+            <TextView
+                android:id="@+id/taskTypeLabelTextView"
+                style="@style/TextView.Overline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:text="@string/label_task_type"
+                app:layout_constraintBottom_toTopOf="@id/taskTypeTextView"
+                app:layout_constraintEnd_toStartOf="@id/workerTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/taskTypeTextView"
+                style="@style/TextView.Subheader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                app:layout_constraintBottom_toTopOf="@id/statusLabelTextView"
+                app:layout_constraintEnd_toStartOf="@id/workerTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/taskTypeLabelTextView"
+                tools:text="Plumbing" />
+
+            <TextView
+                android:id="@+id/statusLabelTextView"
+                style="@style/TextView.Overline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:text="@string/label_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/etaLabelTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/taskTypeTextView" />
+
+            <TextView
+                android:id="@+id/statusTextView"
+                style="@style/TextView.Subheader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/etaTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/statusLabelTextView"
+                tools:text="En Route" />
+
+            <TextView
+                android:id="@+id/workerLabelTextView"
+                style="@style/TextView.Overline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_worker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/workerTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/workerTextView"
+                style="@style/TextView.Subheader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/etaLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workerLabelTextView"
+                tools:text="Phillip Jeffries" />
+
+            <TextView
+                android:id="@+id/etaLabelTextView"
+                style="@style/TextView.Overline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/label_eta"
+                app:layout_constraintBottom_toTopOf="@id/etaTextView"
+                app:layout_constraintStart_toStartOf="@id/workerTextView"
+                app:layout_constraintTop_toBottomOf="@id/workerTextView" />
+
+            <TextView
+                android:id="@+id/etaTextView"
+                style="@style/TextView.Subheader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/etaLabelTextView"
+                app:layout_constraintTop_toBottomOf="@id/etaLabelTextView"
+                tools:text="45 minutes" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
