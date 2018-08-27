@@ -1,14 +1,10 @@
 package com.nerdery.rtaza.mvvmdemo.ui.jobs
 
-import android.graphics.PorterDuff
 import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.nerdery.rtaza.mvvmdemo.ui.util.JobIconUtil
-import com.nerdery.rtaza.mvvmdemo.ui.util.TextFormatter
-import com.nerdery.rtaza.mvvmdemo.ui.util.TimeUtil
-import com.nerdery.rtaza.mvvmdemo.ui.util.resolveThemeAttribute
+import com.nerdery.rtaza.mvvmdemo.ui.util.*
 import kotlinx.android.synthetic.main.item_job.view.*
 
 class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -17,7 +13,7 @@ class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(presentationModel: JobsViewModel.Presentation.Model) {
         this.presentationModel = presentationModel
         itemView.apply {
-            taskForegroundImageView.setImageResource(presentationModel.jobTaskIconId)
+            taskImageView.setImageResource(presentationModel.jobTaskIconId)
             addressLine1TextView.text = presentationModel.addressLine1Text
             addressLine2TextView.text = presentationModel.addressLine2Text
             taskTypeTextView.text = context.getString(presentationModel.jobTaskTextId)
@@ -37,7 +33,7 @@ class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             @ColorInt val etaStatusColor = ContextCompat.getColor(
                 context, JobIconUtil.getEtaStatusColorId(presentationModel.jobStatus, presentationModel.eta)
             )
-            taskBackgroundImageView.setColorFilter(etaStatusColor, PorterDuff.Mode.SRC_IN)
+            taskImageView.setBackgroundTint(etaStatusColor)
 
             if (dueInTime < 0) {
                 etaTextView.setTextColor(etaStatusColor)
