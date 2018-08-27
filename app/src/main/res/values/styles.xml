@@ -1,7 +1,7 @@
 <resources>
 
     <style name="ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:id">@id/action_bar</item>
+        <item name="android:id">@id/actionBar</item>
         <item name="android:layout_height">?android:attr/actionBarSize</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/primary</item>

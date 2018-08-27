@@ -14,9 +14,9 @@ class TimeUtil {
          * @param promisedEta the promised ETA in milliseconds.
          * @return the difference between the [promisedEta] and the current time in minutes.
          */
-        fun calculateDueInTime(promisedEta: Long): Long {
-            return TimeUnit.MILLISECONDS.toMinutes(promisedEta) -
-                    TimeUnit.MILLISECONDS.toMinutes(getCurrentTimeMillis())
+        fun calculateDueInTime(promisedEta: Long): Int {
+            return (TimeUnit.MILLISECONDS.toMinutes(promisedEta) -
+                    TimeUnit.MILLISECONDS.toMinutes(getCurrentTimeMillis())).toInt()
         }
 
         /**
@@ -26,10 +26,10 @@ class TimeUtil {
          * @return the difference between the current time and the [promisedEta] in minutes.
          * Returns 0 if the difference is negative (not late).
          */
-        fun calculateMinutesLate(promisedEta: Long): Long {
+        fun calculateMinutesLate(promisedEta: Long): Int {
             val diff = TimeUnit.MILLISECONDS.toMinutes(getCurrentTimeMillis()) -
                     TimeUnit.MILLISECONDS.toMinutes(promisedEta)
-            return if (diff > 0) diff else 0
+            return if (diff > 0) diff.toInt() else 0
         }
     }
 }

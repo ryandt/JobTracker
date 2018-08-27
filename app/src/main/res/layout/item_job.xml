@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView 
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,6 +34,7 @@
                 android:id="@+id/taskForegroundImageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:padding="@dimen/spacing_xsmall"
                 app:layout_constraintBottom_toBottomOf="@id/taskBackgroundImageView"
                 app:layout_constraintEnd_toEndOf="@id/taskBackgroundImageView"
                 app:layout_constraintStart_toStartOf="@id/taskBackgroundImageView"
@@ -128,6 +129,13 @@
                 app:layout_constraintTop_toBottomOf="@id/statusLabelTextView"
                 tools:text="En Route" />
 
+            <android.support.constraint.Guideline
+                android:id="@+id/centerGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
             <TextView
                 android:id="@+id/workerLabelTextView"
                 style="@style/TextView.Overline"
@@ -135,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/label_worker"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/workerTextView"
+                app:layout_constraintStart_toStartOf="@id/centerGuideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -144,6 +152,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@id/etaLabelTextView"
+                app:layout_constraintStart_toStartOf="@id/centerGuideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/workerLabelTextView"
                 tools:text="Phillip Jeffries" />
@@ -156,7 +165,7 @@
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:text="@string/label_eta"
                 app:layout_constraintBottom_toTopOf="@id/etaTextView"
-                app:layout_constraintStart_toStartOf="@id/workerTextView"
+                app:layout_constraintStart_toStartOf="@id/centerGuideline"
                 app:layout_constraintTop_toBottomOf="@id/workerTextView" />
 
             <TextView
@@ -166,7 +175,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/etaLabelTextView"
+                app:layout_constraintStart_toStartOf="@id/centerGuideline"
                 app:layout_constraintTop_toBottomOf="@id/etaLabelTextView"
                 tools:text="45 minutes" />
 

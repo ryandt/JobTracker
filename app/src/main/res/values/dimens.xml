@@ -27,6 +27,9 @@
     <dimen name="image_medium">60dp</dimen>
     <dimen name="image_large">105dp</dimen>
     <dimen name="image_xlarge">130dp</dimen>
+    <dimen name="icon_small">18dp</dimen>
+    <dimen name="icon_medium">20dp</dimen>
+    <dimen name="icon_large">24dp</dimen>
 
     <!-- Miscellaneous -->
     <dimen name="elevation_app_bar">4dp</dimen>

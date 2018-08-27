@@ -8,25 +8,25 @@ data class JobResponse(
     val id: Long,
     val task: String,
     val status: String,
-    val active: Boolean,
     val locationResponse: LocationResponse,
     val workerResponse: WorkerResponse?,
-    val customerResponse: CustomerResponse?,
+    val customerResponse: CustomerResponse,
     val eta: Long,
-    val notes: String?
+    val customerNotes: String?
 ) {
 
     fun toJob(): Job {
+        val jobStatus = JobStatus.Converter().toJobStatus(status)
         return Job(
-            id = id,
-            task = JobTask.Converter().toJobTask(task),
-            status = JobStatus.Converter().toJobStatus(status),
-            active = active,
-            location = locationResponse.toLocation(),
-            workerId = workerResponse?.id,
-            customer = customerResponse?.toCustomer(),
-            eta = eta,
-            notes = notes
+            id,
+            JobTask.Converter().toJobTask(task),
+            jobStatus,
+            jobStatus.active,
+            customerResponse.toCustomer(),
+            locationResponse.toLocation(),
+            workerResponse?.id,
+            eta,
+            customerNotes
         )
     }
 }

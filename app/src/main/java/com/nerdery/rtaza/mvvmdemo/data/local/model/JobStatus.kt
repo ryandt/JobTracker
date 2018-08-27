@@ -13,7 +13,7 @@ enum class JobStatus(
     @StringRes val label: Int,
     val active: Boolean
 ) {
-    NEW("new", R.string.job_status_new, true),
+    NEW("new", R.string.job_status_new, false),
     ACCEPTED("accepted", R.string.job_status_accepted, true),
     DECLINED("declined", R.string.job_status_declined, false),
     MISSED("missed", R.string.job_status_missed, false),

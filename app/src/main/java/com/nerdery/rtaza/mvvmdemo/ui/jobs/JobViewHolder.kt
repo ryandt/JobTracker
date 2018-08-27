@@ -22,7 +22,7 @@ class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             addressLine2TextView.text = presentationModel.addressLine2Text
             taskTypeTextView.text = context.getString(presentationModel.jobTaskTextId)
             statusTextView.text = context.getString(presentationModel.jobStatusTextId)
-            workerLabelTextView.text = presentationModel.workerNameText
+            workerTextView.text = presentationModel.workerNameText
             updateEta()
         }
         itemView.setOnClickListener {

@@ -67,8 +67,8 @@ class JobsViewModel @Inject constructor(
                     models.add(
                         Model(
                             id,
-                            status,
-                            status.label,
+                            getStatus(),
+                            getStatus().label,
                             task.label,
                             JobIconUtil.getTaskIconId(task),
                             location.street,

@@ -8,7 +8,7 @@ import com.nerdery.rtaza.mvvmdemo.data.local.model.Worker
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 
-private const val QUERY_SELECT_ALL = "SELECT * FROM workerResponse WHERE id = :workerId LIMIT 1"
+private const val QUERY_SELECT_ALL = "SELECT * FROM worker WHERE id = :workerId LIMIT 1"
 
 /**
  * Data Access Object for defining Room database operations that can be performed on [Worker] entities.

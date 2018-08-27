@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 class AdapterModule {
 
     @Provides
-    fun provideJobsAdapter(): JobsListAdapter {
+    fun provideJobsListAdapter(): JobsListAdapter {
         return JobsListAdapter(CompositeDisposable())
     }
 }

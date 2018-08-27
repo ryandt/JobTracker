@@ -17,7 +17,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        val toolbar: Toolbar? = findViewById(R.id.action_bar)
+        val toolbar: Toolbar? = findViewById(R.id.actionBar)
         if (toolbar != null) {
             initializeAppBar(toolbar)
         }

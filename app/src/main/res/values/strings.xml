@@ -29,13 +29,16 @@
     <string name="job_task_hvac">HVAC</string>
 
     <!-- Job details -->
-    <string name="minutes">%d minutes</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
     <string name="eta_now">Due now</string>
     <string name="eta_negative">Overdue</string>
     <string name="label_task_type">Task type</string>
     <string name="label_status">Status</string>
     <string name="label_worker">Worker</string>
     <string name="label_eta">ETA</string>
-    <string name="format_city_state">$1%s, $2%s</string>
+    <string name="format_city_state">%1$s, %2$s</string>
 
 </resources>

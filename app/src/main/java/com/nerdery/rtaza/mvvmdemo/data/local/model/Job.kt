@@ -13,11 +13,21 @@ import android.arch.persistence.room.*
 data class Job(
     @PrimaryKey var id: Long,
     var task: JobTask,
-    var status: JobStatus,
-    var active: Boolean,
+    private var status: JobStatus,
+    private var active: Boolean,
     @Embedded var customer: Customer,
     @Embedded var location: Location,
-    var workerId: String?,
+    var workerId: Long?,
     var eta: Long,
     var notes: String?
-)
+) {
+
+    fun setStatus(status: JobStatus) {
+        this.status = status
+        active = status.active
+    }
+
+    fun getStatus() = status
+
+    fun getActive() = active
+}

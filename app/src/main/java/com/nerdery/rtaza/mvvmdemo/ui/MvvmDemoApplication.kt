@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.StrictMode
 import com.nerdery.rtaza.mvvmdemo.BuildConfig
-import com.squareup.leakcanary.LeakCanary
+import com.nerdery.rtaza.mvvmdemo.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -12,8 +12,8 @@ import io.reactivex.exceptions.CompositeException
 import io.reactivex.exceptions.OnErrorNotImplementedException
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
-import javax.inject.Inject
 import timber.log.Timber
+import javax.inject.Inject
 
 class MvvmDemoApplication : Application(), HasActivityInjector {
     @Inject lateinit var activityInjector: DispatchingAndroidInjector<Activity>

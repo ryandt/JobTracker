@@ -8,7 +8,7 @@ data class JobWithRelations(
 )
 
 data class WorkerRelation(
-    val id: String,
+    val id: Long,
     val firstName: String,
     val lastName: String
 ) {
