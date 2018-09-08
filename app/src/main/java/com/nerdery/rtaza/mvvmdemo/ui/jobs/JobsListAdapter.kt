@@ -12,6 +12,7 @@ import com.nerdery.rtaza.mvvmdemo.ui.util.TimeUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import java.util.concurrent.TimeUnit
 
 private const val ETA_UPDATE_INITIAL_DELAY: Long = 0
@@ -53,13 +54,11 @@ class JobsListAdapter(private val compositeDisposable: CompositeDisposable) :
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
-        compositeDisposable.add(
-            Observable.interval(ETA_UPDATE_INITIAL_DELAY, ETA_UPDATE_INTERVAL, ETA_UPDATE_TIME_UNIT)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    notifyItemRangeChanged(0, itemCount, TimeUtil.getCurrentTimeMillis())
-                }
-        )
+        Observable.interval(ETA_UPDATE_INITIAL_DELAY, ETA_UPDATE_INTERVAL, ETA_UPDATE_TIME_UNIT)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                notifyItemRangeChanged(0, itemCount, TimeUtil.getCurrentTimeMillis())
+            }.addTo(compositeDisposable)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

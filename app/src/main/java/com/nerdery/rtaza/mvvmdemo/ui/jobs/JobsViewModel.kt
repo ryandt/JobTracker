@@ -12,19 +12,20 @@ import com.nerdery.rtaza.mvvmdemo.data.local.model.JobStatus
 import com.nerdery.rtaza.mvvmdemo.data.local.model.JobWithRelations
 import com.nerdery.rtaza.mvvmdemo.data.repository.JobRepository
 import com.nerdery.rtaza.mvvmdemo.ui.core.BaseViewModel
-import com.nerdery.rtaza.mvvmdemo.ui.core.SingleLiveData
+import com.nerdery.rtaza.mvvmdemo.ui.core.SingleLiveEvent
 import com.nerdery.rtaza.mvvmdemo.ui.util.JobIconUtil
 import com.nerdery.rtaza.mvvmdemo.ui.util.TextFormatter
 import com.nerdery.rtaza.mvvmdemo.ui.util.Visibility
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class JobsViewModel @Inject constructor(
     application: Application,
     private val jobRepository: JobRepository
 ) : BaseViewModel(application) {
-    @Visibility val loading: SingleLiveData<Boolean> = SingleLiveData()
-    @StringRes val error: SingleLiveData<Int> = SingleLiveData()
+    @Visibility val loading: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    @StringRes val error: SingleLiveEvent<Int> = SingleLiveEvent()
     private val presentation: MutableLiveData<Presentation> = MutableLiveData()
 
     fun presentation(): LiveData<Presentation> {
@@ -32,27 +33,26 @@ class JobsViewModel @Inject constructor(
     }
 
     fun bind() {
-        compositeDisposable.add(
-            jobRepository.getJobs(true)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { resource: Resource<List<JobWithRelations>> ->
-                    when (resource) {
-                        is Resource.Loading -> {
-                            if (resource.data != null) {
-                                presentation.value = Presentation(getApplication(), resource.data)
-                            }
-                            loading.value = true
-                        }
-                        is Resource.Success -> {
+        jobRepository.getJobs(true)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { resource: Resource<List<JobWithRelations>> ->
+                when (resource) {
+                    is Resource.Loading -> {
+                        if (resource.data != null) {
                             presentation.value = Presentation(getApplication(), resource.data)
-                            loading.value = false
                         }
-                        is Resource.Error -> {
-                            error.value = resource.error?.messageResourceId
-                            loading.value = false
-                        }
+                        loading.value = true
                     }
-                })
+                    is Resource.Success -> {
+                        presentation.value = Presentation(getApplication(), resource.data)
+                        loading.value = false
+                    }
+                    is Resource.Error -> {
+                        error.value = resource.error?.messageResourceId
+                        loading.value = false
+                    }
+                }
+            }.addTo(compositeDisposable)
     }
 
     data class Presentation(

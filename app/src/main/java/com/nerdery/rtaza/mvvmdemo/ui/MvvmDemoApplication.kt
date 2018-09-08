@@ -2,7 +2,6 @@ package com.nerdery.rtaza.mvvmdemo.ui
 
 import android.app.Activity
 import android.app.Application
-import android.os.StrictMode
 import com.nerdery.rtaza.mvvmdemo.BuildConfig
 import com.nerdery.rtaza.mvvmdemo.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
@@ -27,13 +26,6 @@ class MvvmDemoApplication : Application(), HasActivityInjector {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-
-            StrictMode.setThreadPolicy(
-                StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
-            )
         }
 
         setUncaughtRxJavaErrorHandler()
