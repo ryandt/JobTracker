@@ -41,4 +41,8 @@
     <string name="label_eta">ETA</string>
     <string name="format_city_state">%1$s, %2$s</string>
 
+    <!-- Active jobs screen -->
+    <string name="empty_state_title_no_jobs">No active jobs found</string>
+    <string name="empty_state_subtitle_no_jobs">We\'re looking for more work for you. In the meantime, take a break, free your mind, and relax your body.</string>
+
 </resources>

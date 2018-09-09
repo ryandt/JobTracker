@@ -32,4 +32,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/actionBar" />
 
+    <android.support.constraint.Group
+        android:id="@+id/emptyStateGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="emptyStateImageView, emptyStateTitleTextView, emptyStateSubtitleTextView" />
+
+    <ImageView
+        android:id="@+id/emptyStateImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_no_active_jobs"
+        app:layout_constraintBottom_toTopOf="@id/emptyStateTitleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/emptyStateTitleTextView"
+        style="@style/TextView.Title"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:paddingStart="@dimen/spacing_xxlarge"
+        android:paddingEnd="@dimen/spacing_xxlarge"
+        android:gravity="center"
+        android:text="@string/empty_state_title_no_jobs"
+        android:textColor="@color/text_dark_secondary"
+        app:layout_constraintBottom_toTopOf="@id/emptyStateSubtitleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emptyStateImageView" />
+
+    <TextView
+        android:id="@+id/emptyStateSubtitleTextView"
+        style="@style/TextView.Subtitle"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:paddingStart="@dimen/spacing_xxlarge"
+        android:paddingEnd="@dimen/spacing_xxlarge"
+        android:gravity="center"
+        android:text="@string/empty_state_subtitle_no_jobs"
+        android:textColor="@color/text_dark_tertiary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emptyStateTitleTextView" />
+
 </android.support.constraint.ConstraintLayout>

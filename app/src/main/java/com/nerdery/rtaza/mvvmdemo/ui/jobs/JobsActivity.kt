@@ -40,6 +40,7 @@ class JobsActivity : BaseActivity() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(JobsViewModel::class.java)
         viewModel.bind()
+
         viewModel.loading.observeNonNull(this) { loading ->
             progressBar.visibility = if (loading && listAdapter.itemCount == 0) {
                 View.VISIBLE
@@ -47,13 +48,18 @@ class JobsActivity : BaseActivity() {
                 View.GONE
             }
         }
+
         viewModel.error.observeNonNull(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_LONG).show()
         }
+
         viewModel.presentation().observeNonNull(this) { presentation ->
             if (presentation.models.isEmpty()) {
-                // TODO: Show empty state view, and hide list
+                recyclerView.visibility = View.INVISIBLE
+                emptyStateGroup.visibility = View.VISIBLE
             } else {
+                emptyStateGroup.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
                 listAdapter.submitList(presentation.models)
             }
         }

@@ -27,7 +27,7 @@ class JobResponseFactory {
             ),
             workerResponse = WorkerResponse(919345446, "Phillip", "Jeffries", true),
             customerResponse = CustomerResponse("Dale", "Cooper", "4306665421"),
-            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(60),
+            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(45),
             customerNotes = "Diane, 7:30 am, February twenty-fourth. Entering town of Twin Peaks. Five miles south of the Canadian border, twelve miles west of the state line. Never seen so many trees in my life. As W.C. Fields would say, I'd rather be here than Philadelphia. It's fifty-four degrees on a slightly overcast day. Weatherman said rain. If you could get paid that kind of money for being wrong sixty percent of the time it'd beat working. Mileage is 79,345, gauge is on reserve, I'm riding on fumes here, I've got to tank up when I get into town. Remind me to tell you how much that is. Lunch was \$6.31 at the Lamplighter Inn. That's on Highway Two near Lewis Fork. That was a tuna fish sandwich on whole wheat, a slice of cherry pie and a cup of coffee. Damn good food. Diane, if you ever get up this way, that cherry pie is worth a stop."
         )
 
@@ -45,7 +45,7 @@ class JobResponseFactory {
             ),
             workerResponse = WorkerResponse(919937023, "Pete", "Martell", true),
             customerResponse = CustomerResponse("Laura", "Palmer", "4306652451"),
-            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(45),
+            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(5),
             customerNotes = "Nowhere... fast. And you're not coming."
         )
 
