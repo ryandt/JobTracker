@@ -8,10 +8,10 @@ import timber.log.Timber
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
- * A lifecycle-aware observable that sends only new updates after subscription, used for events like navigation
- * Toast messages, and Snackbar messages.
+ * A lifecycle-aware observable that sends only new updates after subscription. Used for events like navigation and
+ * Toast messages.
  *
- * This avoids a common problem with LiveData: on configuration change (like rotation of the device) an update can
+ * This avoids a common problem with LiveData: on configuration change (like rotation of the device), an update can
  * be emitted if the observer is active. This LiveData only calls the observable if there's an explicit call to
  * setValue() or call().
  *

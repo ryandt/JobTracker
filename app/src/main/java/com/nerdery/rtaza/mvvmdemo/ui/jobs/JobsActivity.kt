@@ -39,7 +39,6 @@ class JobsActivity : BaseActivity() {
         }
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(JobsViewModel::class.java)
-        viewModel.bind()
 
         viewModel.loading.observeNonNull(this) { loading ->
             progressBar.visibility = if (loading && listAdapter.itemCount == 0) {
@@ -48,12 +47,10 @@ class JobsActivity : BaseActivity() {
                 View.GONE
             }
         }
-
         viewModel.error.observeNonNull(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_LONG).show()
         }
-
-        viewModel.presentation().observeNonNull(this) { presentation ->
+        viewModel.getPresentation().observeNonNull(this) { presentation ->
             if (presentation.models.isEmpty()) {
                 recyclerView.visibility = View.INVISIBLE
                 emptyStateGroup.visibility = View.VISIBLE
@@ -63,5 +60,7 @@ class JobsActivity : BaseActivity() {
                 listAdapter.submitList(presentation.models)
             }
         }
+
+        viewModel.bind()
     }
 }

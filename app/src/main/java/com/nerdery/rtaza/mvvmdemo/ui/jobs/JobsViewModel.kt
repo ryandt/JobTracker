@@ -28,7 +28,7 @@ class JobsViewModel @Inject constructor(
     @StringRes val error: SingleLiveEvent<Int> = SingleLiveEvent()
     private val presentation: MutableLiveData<Presentation> = MutableLiveData()
 
-    fun presentation(): LiveData<Presentation> {
+    fun getPresentation(): LiveData<Presentation> {
         return presentation
     }
 
