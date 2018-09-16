@@ -46,7 +46,6 @@ class JobsViewModel @Inject constructor(
                         loading.postValue(true)
                     }
                     is Resource.ResourceFound -> {
-
                         presentation.postValue(Presentation(getApplication(), resource.data!!))
                         loading.postValue(false)
                     }
