@@ -61,8 +61,8 @@ class JobRepository @Inject constructor(
         } else {
             updateLocalDataSources(response)
             emitter.setDisposable(jobLocalDataSource.streamAll(active)
-                .subscribe { jobs ->
-                    emitter.onNext(Resource.ResourceFound(jobs))
+                .subscribe { jobsWithRelations ->
+                    emitter.onNext(Resource.ResourceFound(jobsWithRelations))
                 })
         }
     }
