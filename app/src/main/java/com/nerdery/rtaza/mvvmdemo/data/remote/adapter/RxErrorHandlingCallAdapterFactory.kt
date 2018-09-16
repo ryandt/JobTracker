@@ -67,7 +67,7 @@ class RxErrorHandlingCallAdapterFactory(scheduler: Scheduler) : CallAdapter.Fact
                     // Network error (no network connection, timeout)
                     Error.HttpClientIo(throwable)
                 is HttpException ->
-                    // Non-200 HTTP error
+                    // HTTP error (server down, unauthorized request)
                     when (throwable.code()) {
                         HttpURLConnection.HTTP_INTERNAL_ERROR -> Error.HttpServer(throwable)
                         HttpURLConnection.HTTP_UNAUTHORIZED -> Error.HttpUnauthorized(throwable)

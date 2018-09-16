@@ -47,18 +47,20 @@ class JobsActivity : BaseActivity() {
                 View.GONE
             }
         }
+
+        viewModel.getPresentation().observeNonNull(this) { presentation ->
+            emptyStateGroup.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            listAdapter.submitList(presentation.models)
+        }
+
+        viewModel.getNoJobsFound().observeNonNull(this) {
+            recyclerView.visibility = View.INVISIBLE
+            emptyStateGroup.visibility = View.VISIBLE
+        }
+
         viewModel.error.observeNonNull(this) { error ->
             Toast.makeText(this, error, Toast.LENGTH_LONG).show()
-        }
-        viewModel.getPresentation().observeNonNull(this) { presentation ->
-            if (presentation.models.isEmpty()) {
-                recyclerView.visibility = View.INVISIBLE
-                emptyStateGroup.visibility = View.VISIBLE
-            } else {
-                emptyStateGroup.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
-                listAdapter.submitList(presentation.models)
-            }
         }
 
         viewModel.bind()

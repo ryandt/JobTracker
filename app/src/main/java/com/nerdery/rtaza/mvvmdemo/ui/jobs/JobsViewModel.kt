@@ -15,8 +15,6 @@ import com.nerdery.rtaza.mvvmdemo.ui.core.BaseViewModel
 import com.nerdery.rtaza.mvvmdemo.ui.core.SingleLiveEvent
 import com.nerdery.rtaza.mvvmdemo.ui.util.JobIconUtil
 import com.nerdery.rtaza.mvvmdemo.ui.util.TextFormatter
-import com.nerdery.rtaza.mvvmdemo.ui.util.Visibility
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
@@ -24,32 +22,40 @@ class JobsViewModel @Inject constructor(
     application: Application,
     private val jobRepository: JobRepository
 ) : BaseViewModel(application) {
-    @Visibility val loading: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val loading: SingleLiveEvent<Boolean> = SingleLiveEvent()
     @StringRes val error: SingleLiveEvent<Int> = SingleLiveEvent()
     private val presentation: MutableLiveData<Presentation> = MutableLiveData()
+    private val noJobsFound: MutableLiveData<Unit> = MutableLiveData()
 
     fun getPresentation(): LiveData<Presentation> {
         return presentation
     }
 
+    fun getNoJobsFound(): LiveData<Unit> {
+        return noJobsFound
+    }
+
     fun bind() {
         jobRepository.getJobs(true)
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe { resource: Resource<List<JobWithRelations>> ->
                 when (resource) {
                     is Resource.Loading -> {
                         if (resource.data != null) {
-                            presentation.value = Presentation(getApplication(), resource.data)
+                            presentation.postValue(Presentation(getApplication(), resource.data))
                         }
-                        loading.value = true
+                        loading.postValue(true)
                     }
-                    is Resource.Success -> {
-                        presentation.value = Presentation(getApplication(), resource.data)
-                        loading.value = false
+                    is Resource.ResourceFound -> {
+                        presentation.postValue(Presentation(getApplication(), resource.data!!))
+                        loading.postValue(false)
+                    }
+                    is Resource.NoResourceFound -> {
+                        noJobsFound.postValue(Unit)
+                        loading.postValue(false)
                     }
                     is Resource.Error -> {
-                        error.value = resource.error?.messageResourceId
-                        loading.value = false
+                        error.postValue(resource.error?.messageResourceId)
+                        loading.postValue(false)
                     }
                 }
             }.addTo(compositeDisposable)
@@ -57,12 +63,12 @@ class JobsViewModel @Inject constructor(
 
     data class Presentation(
         private val context: Context,
-        private val jobsWithRelations: List<JobWithRelations>?
+        private val jobsWithRelations: List<JobWithRelations>
     ) {
-        val models: MutableList<Model> = ArrayList()
+        val models: MutableList<Model> = ArrayList(jobsWithRelations.size)
 
         init {
-            jobsWithRelations?.forEach { jobWithRelations ->
+            jobsWithRelations.forEach { jobWithRelations ->
                 with(jobWithRelations.job) {
                     models.add(
                         Model(

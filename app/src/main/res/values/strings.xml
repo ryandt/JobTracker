@@ -3,7 +3,7 @@
     <!-- App-wide -->
     <string name="app_name">MVVM Demo</string>
     <string name="error_http_io">Request failed. Check your network connection.</string>
-    <string name="error_http_server">Request failed. RTAZA servers are down. Try again later.</string>
+    <string name="error_http_server">Request failed. Something went wrong on our end.</string>
     <string name="error_http_unauthorized">Session expired. Please log in again.</string>
     <string name="error_unknown">Request failed</string>
     <string name="data_not_available">N/A</string>

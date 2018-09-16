@@ -8,6 +8,7 @@ import com.nerdery.rtaza.mvvmdemo.data.local.model.JobWithRelations
 import com.nerdery.rtaza.mvvmdemo.data.remote.api.JobWebApi
 import com.nerdery.rtaza.mvvmdemo.data.remote.model.JobResponse
 import com.nerdery.rtaza.mvvmdemo.data.util.JobResponseFactory
+import com.nerdery.rtaza.mvvmdemo.ui.util.isNullOrEmpty
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -30,11 +31,7 @@ class JobRepository @Inject constructor(
                 emitter: ObservableEmitter<Resource<List<JobWithRelations>>>,
                 response: List<JobResponse>
             ) {
-                updateLocalDataSources(response)
-                emitter.setDisposable(jobLocalDataSource.streamAll(active)
-                    .subscribe { jobs ->
-                        emitter.onNext(Resource.Success(jobs))
-                    })
+                handleNetworkResponse(emitter, response, active)
             }
 
             // The network request is expected to fail since the URL that's being hit isn't valid.
@@ -50,13 +47,24 @@ class JobRepository @Inject constructor(
                     JobResponseFactory.createEnRoutePlumbingJobResponse()
                 )
 
-                updateLocalDataSources(response)
-                emitter.setDisposable(jobLocalDataSource.streamAll(active)
-                    .subscribe { jobs ->
-                        emitter.onNext(Resource.Success(jobs))
-                    })
+                handleNetworkResponse(emitter, response, active)
             }
         }.resourceObservable
+    }
+
+    fun handleNetworkResponse(
+        emitter: ObservableEmitter<Resource<List<JobWithRelations>>>, response: List<JobResponse>,
+        active: Boolean
+    ) {
+        if (response.isNullOrEmpty()) {
+            emitter.onNext(Resource.NoResourceFound())
+        } else {
+            updateLocalDataSources(response)
+            emitter.setDisposable(jobLocalDataSource.streamAll(active)
+                .subscribe { jobs ->
+                    emitter.onNext(Resource.ResourceFound(jobs))
+                })
+        }
     }
 
     fun getJob(jobId: Long): Observable<Resource<JobWithRelations>> {
@@ -72,7 +80,7 @@ class JobRepository @Inject constructor(
                 updateLocalDataSources(response)
                 emitter.setDisposable(jobLocalDataSource.stream(jobId)
                     .subscribe { jobWithRelations ->
-                        emitter.onNext(Resource.Success(jobWithRelations))
+                        emitter.onNext(Resource.ResourceFound(jobWithRelations))
                     })
             }
         }.resourceObservable
