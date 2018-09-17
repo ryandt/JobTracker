@@ -14,7 +14,7 @@ import com.nerdery.rtaza.mvvmdemo.data.local.model.Worker
     entities = [
         Job::class,
         Worker::class
-    ], version = 2
+    ], version = 3
 )
 @TypeConverters(
     JobStatus.Converter::class,

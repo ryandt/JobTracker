@@ -10,11 +10,7 @@ class TextFormatter {
         fun formatFullName(context: Context, firstName: String?, lastName: String?): String {
             val joinedStrings = String.join(" ", firstName, lastName)
 
-            return if (joinedStrings.isEmpty()) {
-                context.getString(R.string.data_not_available)
-            } else {
-                joinedStrings
-            }
+            return joinedStrings ?: context.getString(R.string.data_not_available)
         }
 
         fun formatDueInTime(context: Context, dueInTime: Int): String {

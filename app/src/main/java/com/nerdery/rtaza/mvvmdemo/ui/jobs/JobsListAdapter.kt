@@ -26,6 +26,8 @@ class JobsListAdapter(private val compositeDisposable: CompositeDisposable) :
         setHasStableIds(true)
     }
 
+    fun isEmpty() = itemCount == 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_job, parent, false)
         return JobViewHolder(itemView)

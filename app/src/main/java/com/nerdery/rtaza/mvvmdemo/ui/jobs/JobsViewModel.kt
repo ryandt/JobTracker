@@ -7,6 +7,7 @@ import android.content.Context
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
 import com.nerdery.rtaza.mvvmdemo.R
+import com.nerdery.rtaza.mvvmdemo.data.core.Error
 import com.nerdery.rtaza.mvvmdemo.data.core.Resource
 import com.nerdery.rtaza.mvvmdemo.data.local.model.JobStatus
 import com.nerdery.rtaza.mvvmdemo.data.local.model.JobWithRelations
@@ -23,7 +24,7 @@ class JobsViewModel @Inject constructor(
     private val jobRepository: JobRepository
 ) : BaseViewModel(application) {
     val loading: SingleLiveEvent<Boolean> = SingleLiveEvent()
-    @StringRes val error: SingleLiveEvent<Int> = SingleLiveEvent()
+    val error: SingleLiveEvent<Error> = SingleLiveEvent()
     private val presentation: MutableLiveData<Presentation> = MutableLiveData()
     private val noJobsFound: MutableLiveData<Unit> = MutableLiveData()
 
@@ -54,7 +55,7 @@ class JobsViewModel @Inject constructor(
                         loading.postValue(false)
                     }
                     is Resource.Error -> {
-                        error.postValue(resource.error?.messageResourceId)
+                        error.postValue(resource.error)
                         loading.postValue(false)
                     }
                 }

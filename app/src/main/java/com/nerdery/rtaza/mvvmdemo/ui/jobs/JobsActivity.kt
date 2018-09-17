@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.Toast
 import com.nerdery.rtaza.mvvmdemo.R
 import com.nerdery.rtaza.mvvmdemo.ui.core.BaseActivity
 import com.nerdery.rtaza.mvvmdemo.ui.util.observeNonNull
@@ -41,7 +40,7 @@ class JobsActivity : BaseActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(JobsViewModel::class.java)
 
         viewModel.loading.observeNonNull(this) { loading ->
-            progressBar.visibility = if (loading && listAdapter.itemCount == 0) {
+            progressBar.visibility = if (loading && listAdapter.isEmpty()) {
                 View.VISIBLE
             } else {
                 View.GONE
@@ -49,20 +48,39 @@ class JobsActivity : BaseActivity() {
         }
 
         viewModel.getPresentation().observeNonNull(this) { presentation ->
-            emptyStateGroup.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
+            toggleEmptyStateVisibility(false)
             listAdapter.submitList(presentation.models)
         }
 
         viewModel.getNoJobsFound().observeNonNull(this) {
-            recyclerView.visibility = View.INVISIBLE
-            emptyStateGroup.visibility = View.VISIBLE
+            emptyStateImageView.setImageResource(R.drawable.icon_no_active_jobs)
+            emptyStateTitleTextView.setText(R.string.empty_state_title_no_jobs)
+            emptyStateDescriptionTextView.setText(R.string.empty_state_description_no_jobs)
+            toggleEmptyStateVisibility(true)
         }
 
         viewModel.error.observeNonNull(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+            if (listAdapter.isEmpty()) {
+                emptyStateImageView.setImageResource(error.iconResourceId)
+                emptyStateTitleTextView.setText(error.titleResourceId)
+                emptyStateDescriptionTextView.setText(error.descriptionResourceId)
+                toggleEmptyStateVisibility(true)
+            }
+            // Don't show an error if there're jobs in the list loaded from Room since the request was not explicitly
+            // request by the user, but consider adding some sort of indication that the jobs being shown may not be the
+            // freshest.
         }
 
         viewModel.bind()
+    }
+
+    private fun toggleEmptyStateVisibility(show: Boolean) {
+        if (show) {
+            recyclerView.visibility = View.INVISIBLE
+            emptyStateGroup.visibility = View.VISIBLE
+        } else {
+            emptyStateGroup.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
     }
 }

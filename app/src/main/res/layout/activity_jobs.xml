@@ -36,48 +36,48 @@
         android:id="@+id/emptyStateGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="emptyStateImageView, emptyStateTitleTextView, emptyStateSubtitleTextView" />
+        app:constraint_referenced_ids="emptyStateImageView, emptyStateTitleTextView, emptyStateDescriptionTextView" />
 
     <ImageView
         android:id="@+id/emptyStateImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_no_active_jobs"
         app:layout_constraintBottom_toTopOf="@id/emptyStateTitleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:src="@drawable/icon_no_active_jobs" />
 
     <TextView
         android:id="@+id/emptyStateTitleTextView"
         style="@style/TextView.Title"
         android:layout_marginTop="@dimen/spacing_medium"
+        android:gravity="center"
         android:paddingStart="@dimen/spacing_xxlarge"
         android:paddingEnd="@dimen/spacing_xxlarge"
-        android:gravity="center"
-        android:text="@string/empty_state_title_no_jobs"
         android:textColor="@color/text_dark_secondary"
-        app:layout_constraintBottom_toTopOf="@id/emptyStateSubtitleTextView"
+        app:layout_constraintBottom_toTopOf="@id/emptyStateDescriptionTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emptyStateImageView" />
+        app:layout_constraintTop_toBottomOf="@id/emptyStateImageView"
+        tools:text="@string/empty_state_title_no_jobs" />
 
     <TextView
-        android:id="@+id/emptyStateSubtitleTextView"
+        android:id="@+id/emptyStateDescriptionTextView"
         style="@style/TextView.Subtitle"
         android:layout_marginTop="@dimen/spacing_small"
+        android:gravity="center"
         android:paddingStart="@dimen/spacing_xxlarge"
         android:paddingEnd="@dimen/spacing_xxlarge"
-        android:gravity="center"
-        android:text="@string/empty_state_subtitle_no_jobs"
         android:textColor="@color/text_dark_tertiary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emptyStateTitleTextView" />
+        app:layout_constraintTop_toBottomOf="@id/emptyStateTitleTextView"
+        tools:text="@string/empty_state_description_no_jobs" />
 
 </android.support.constraint.ConstraintLayout>

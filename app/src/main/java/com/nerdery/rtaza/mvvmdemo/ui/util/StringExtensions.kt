@@ -1,6 +1,6 @@
 package com.nerdery.rtaza.mvvmdemo.ui.util
 
-fun String.Companion.join(delimiter: String?, vararg strings: String?): String {
+fun String.Companion.join(delimiter: String?, vararg strings: String?): String? {
     val builder = StringBuilder()
     var string: String?
 
@@ -15,5 +15,5 @@ fun String.Companion.join(delimiter: String?, vararg strings: String?): String {
         }
     }
 
-    return builder.toString()
+    return if (builder.isEmpty()) null else builder.toString()
 }

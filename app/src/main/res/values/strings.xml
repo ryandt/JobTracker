@@ -2,11 +2,17 @@
 
     <!-- App-wide -->
     <string name="app_name">MVVM Demo</string>
-    <string name="error_http_io">Request failed. Check your network connection.</string>
-    <string name="error_http_server">Request failed. Something went wrong on our end.</string>
-    <string name="error_http_unauthorized">Session expired. Please log in again.</string>
-    <string name="error_unknown">Request failed</string>
-    <string name="data_not_available">N/A</string>
+    <string name="error_title_http_io">Request failed</string>
+    <string name="error_description_http_io">Check your network connection</string>
+    <string name="error_title_http_server">Request failed</string>
+    <string name="error_description_http_server"> Something went wrong on our end</string>
+    <string name="error_title_http_unauthorized">Session expired</string>
+    <string name="error_description_http_unauthorized">Please log in again</string>
+    <string name="error_title_unknown">Request failed</string>
+    <string name="error_description_unknown">Something went wrong
+    </string>
+    <string name="format_error_title_description">%1$s. %2$s.</string>
+    <string name="data_not_available">--</string>
 
     <!-- Job statuses -->
     <string name="job_status_new">New</string>
@@ -43,6 +49,6 @@
 
     <!-- Active jobs screen -->
     <string name="empty_state_title_no_jobs">No active jobs found</string>
-    <string name="empty_state_subtitle_no_jobs">We\'re looking for more work for you. In the meantime, take a break, free your mind, and relax your body.</string>
+    <string name="empty_state_description_no_jobs">We\'re looking for more work for you. In the meantime, take a break, free your mind, and relax your body.</string>
 
 </resources>
