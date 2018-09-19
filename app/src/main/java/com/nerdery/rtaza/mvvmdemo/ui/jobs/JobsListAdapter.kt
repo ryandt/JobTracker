@@ -8,25 +8,29 @@ import android.support.v7.util.DiffUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nerdery.rtaza.mvvmdemo.R
-import com.nerdery.rtaza.mvvmdemo.ui.util.TimeUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
+import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
-private const val ETA_UPDATE_INITIAL_DELAY: Long = 0
-private const val ETA_UPDATE_INTERVAL: Long = 1
-private val ETA_UPDATE_TIME_UNIT = TimeUnit.MINUTES
-
-class JobsListAdapter(private val compositeDisposable: CompositeDisposable) :
-    ListAdapter<JobsViewModel.Presentation.Model, JobViewHolder>(diffUtilItemCallback), LifecycleObserver {
+class JobsListAdapter : ListAdapter<JobsViewModel.Presentation.Model, JobViewHolder>(diffUtilItemCallback),
+    LifecycleObserver {
+    private val etaUpdateInterval = Pair<Long, TimeUnit>(1, TimeUnit.MINUTES)
+    private var etaUpdateObservable: Observable<Long>
+    private var etaUpdateDisposable: Disposable? = null
 
     init {
         setHasStableIds(true)
+        etaUpdateObservable = Observable.interval(etaUpdateInterval.first, etaUpdateInterval.second)
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun isEmpty() = itemCount == 0
+    override fun submitList(list: MutableList<JobsViewModel.Presentation.Model>?) {
+        // Reset the ETA update observable anytime a new list is submitted
+        etaUpdateDisposable?.dispose()
+        super.submitList(list)
+        startEtaUpdateInterval()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_job, parent, false)
@@ -43,8 +47,7 @@ class JobsListAdapter(private val compositeDisposable: CompositeDisposable) :
         } else {
             for (payload in payloads) {
                 when (payload) {
-                    is JobsViewModel.Presentation.Model -> onBindViewHolder(holder, position)
-                    is Long -> holder.updateEta()
+                    is EtaUpdatePayload -> holder.updateEta()
                 }
             }
         }
@@ -54,18 +57,24 @@ class JobsListAdapter(private val compositeDisposable: CompositeDisposable) :
         return getItem(position).jobId
     }
 
+    fun isEmpty() = itemCount == 0
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
-        Observable.interval(ETA_UPDATE_INITIAL_DELAY, ETA_UPDATE_INTERVAL, ETA_UPDATE_TIME_UNIT)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                notifyItemRangeChanged(0, itemCount, TimeUtil.getCurrentTimeMillis())
-            }.addTo(compositeDisposable)
+    fun startEtaUpdateInterval() {
+        if (!isEmpty()) {
+            etaUpdateDisposable = etaUpdateObservable.subscribe {
+                updateEtas()
+            }
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop() {
-        compositeDisposable.clear()
+    fun clearDisposables() {
+        etaUpdateDisposable?.dispose()
+    }
+
+    private fun updateEtas() {
+        notifyItemRangeChanged(0, itemCount, EtaUpdatePayload())
     }
 }
 
@@ -92,3 +101,5 @@ private val diffUtilItemCallback = object : DiffUtil.ItemCallback<JobsViewModel.
         return newItem
     }
 }
+
+private class EtaUpdatePayload

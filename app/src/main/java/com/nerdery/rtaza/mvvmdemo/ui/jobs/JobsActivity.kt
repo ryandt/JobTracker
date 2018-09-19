@@ -66,9 +66,9 @@ class JobsActivity : BaseActivity() {
                 emptyStateDescriptionTextView.setText(error.descriptionResourceId)
                 toggleEmptyStateVisibility(true)
             }
-            // Don't show an error if there're jobs in the list loaded from Room since the request was not explicitly
-            // request by the user, but consider adding some sort of indication that the jobs being shown may not be the
-            // freshest.
+            // Don't show an error if there're jobs in the list loaded from local persistence since the request was not
+            // explicitly requested by the user, but consider adding some sort of indication that the jobs being shown
+            // may not be the freshest compared to what's available on the backend.
         }
 
         viewModel.bind()
