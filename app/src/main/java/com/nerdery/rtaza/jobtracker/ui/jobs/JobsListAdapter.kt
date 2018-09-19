@@ -8,6 +8,7 @@ import android.support.v7.util.DiffUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nerdery.rtaza.jobtracker.R
+import com.nerdery.rtaza.jobtracker.ui.util.isNullOrEmpty
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit
 
 class JobsListAdapter : ListAdapter<JobsViewModel.Presentation.Model, JobViewHolder>(diffUtilItemCallback),
     LifecycleObserver {
+    private var dataSet: List<JobsViewModel.Presentation.Model>? = null
     private val etaUpdateInterval = Pair<Long, TimeUnit>(1, TimeUnit.MINUTES)
     private var etaUpdateObservable: Observable<Long>
     private var etaUpdateDisposable: Disposable? = null
@@ -25,9 +27,10 @@ class JobsListAdapter : ListAdapter<JobsViewModel.Presentation.Model, JobViewHol
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun submitList(list: MutableList<JobsViewModel.Presentation.Model>?) {
+    override fun submitList(list: List<JobsViewModel.Presentation.Model>?) {
         // Reset the ETA update observable anytime a new list is submitted
         etaUpdateDisposable?.dispose()
+        dataSet = list
         super.submitList(list)
         startEtaUpdateInterval()
     }
@@ -57,7 +60,7 @@ class JobsListAdapter : ListAdapter<JobsViewModel.Presentation.Model, JobViewHol
         return getItem(position).jobId
     }
 
-    fun isEmpty() = itemCount == 0
+    fun isEmpty() = dataSet.isNullOrEmpty()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun startEtaUpdateInterval() {
