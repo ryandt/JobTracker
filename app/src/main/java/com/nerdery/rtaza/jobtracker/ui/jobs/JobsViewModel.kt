@@ -17,6 +17,7 @@ import com.nerdery.rtaza.jobtracker.ui.core.SingleLiveEvent
 import com.nerdery.rtaza.jobtracker.ui.util.JobIconUtil
 import com.nerdery.rtaza.jobtracker.ui.util.TextFormatter
 import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class JobsViewModel @Inject constructor(
@@ -38,6 +39,7 @@ class JobsViewModel @Inject constructor(
 
     fun bind() {
         jobRepository.getJobs(true)
+            .subscribeOn(Schedulers.io())
             .subscribe { resource: Resource<List<JobWithRelations>> ->
                 when (resource) {
                     is Resource.Loading -> {

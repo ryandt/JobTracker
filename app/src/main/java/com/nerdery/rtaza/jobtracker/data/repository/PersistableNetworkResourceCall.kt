@@ -5,7 +5,6 @@ import com.nerdery.rtaza.jobtracker.data.core.Resource
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 /**
@@ -43,7 +42,7 @@ abstract class PersistableNetworkResourceCall<ResponseType, ResourceType> :
                 }, {
                     fetchFromNetwork(emitter)
                 })
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     /**

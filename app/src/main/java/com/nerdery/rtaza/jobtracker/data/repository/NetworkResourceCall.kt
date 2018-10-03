@@ -4,7 +4,6 @@ import com.nerdery.rtaza.jobtracker.data.core.Error
 import com.nerdery.rtaza.jobtracker.data.core.Resource
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
-import io.reactivex.schedulers.Schedulers
 
 /**
  * Abstracts the logic for making a network call that returns a resource.
@@ -24,7 +23,7 @@ abstract class NetworkResourceCall<ResourceType> : NetworkCall<ResourceType, Res
         resourceObservable = Observable.create<Resource<ResourceType>> { emitter ->
             emitter.onNext(Resource.Loading(null))
             fetchFromNetwork(emitter)
-        }.subscribeOn(Schedulers.io())
+        }
     }
 
     /**
