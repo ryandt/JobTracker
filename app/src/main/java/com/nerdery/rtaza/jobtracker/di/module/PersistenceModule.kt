@@ -13,7 +13,7 @@ class PersistenceModule {
 
     @Provides
     fun provideRoomDatabase(application: Application): ApplicationDatabase {
-        return Room.databaseBuilder(application, ApplicationDatabase::class.java, "mvvm-demo-database")
+        return Room.databaseBuilder(application, ApplicationDatabase::class.java, "job-tracker-database")
             .fallbackToDestructiveMigration()
             .build()
     }
