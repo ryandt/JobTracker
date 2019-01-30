@@ -1,7 +1,7 @@
 package com.nerdery.rtaza.jobtracker.ui.core
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {

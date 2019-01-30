@@ -1,10 +1,10 @@
 package com.nerdery.rtaza.jobtracker.ui.jobs
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nerdery.rtaza.jobtracker.R
 import com.nerdery.rtaza.jobtracker.ui.core.BaseActivity
 import com.nerdery.rtaza.jobtracker.ui.util.observeNonNull

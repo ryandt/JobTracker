@@ -1,8 +1,8 @@
 package com.nerdery.rtaza.jobtracker.ui.util
 
 import android.content.Context
-import android.support.annotation.AttrRes
 import android.util.TypedValue
+import androidx.annotation.AttrRes
 
 /**
  * Retrieve the value of an attribute in the Theme.

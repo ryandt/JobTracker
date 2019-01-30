@@ -1,7 +1,7 @@
 package com.nerdery.rtaza.jobtracker.data.local.model
 
-import android.arch.persistence.room.TypeConverter
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
+import androidx.room.TypeConverter
 import com.nerdery.rtaza.jobtracker.R
 
 /**

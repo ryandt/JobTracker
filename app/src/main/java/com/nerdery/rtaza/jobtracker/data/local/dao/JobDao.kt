@@ -1,6 +1,6 @@
 package com.nerdery.rtaza.jobtracker.data.local.dao
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.nerdery.rtaza.jobtracker.data.local.model.Job
 import com.nerdery.rtaza.jobtracker.data.local.model.JobWithRelations
 import io.reactivex.Flowable

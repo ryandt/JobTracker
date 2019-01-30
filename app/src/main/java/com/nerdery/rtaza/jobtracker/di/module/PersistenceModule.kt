@@ -1,7 +1,7 @@
 package com.nerdery.rtaza.jobtracker.di.module
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.nerdery.rtaza.jobtracker.data.local.ApplicationDatabase
 import com.nerdery.rtaza.jobtracker.data.local.dao.JobLocalDataSource
 import com.nerdery.rtaza.jobtracker.data.local.dao.WorkerLocalDataSource

@@ -1,12 +1,12 @@
 package com.nerdery.rtaza.jobtracker.ui.jobs
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.nerdery.rtaza.jobtracker.R
 import com.nerdery.rtaza.jobtracker.ui.util.isNullOrEmpty
 import io.reactivex.Observable

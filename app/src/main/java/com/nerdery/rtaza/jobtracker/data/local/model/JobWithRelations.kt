@@ -1,6 +1,6 @@
 package com.nerdery.rtaza.jobtracker.data.local.model
 
-import android.arch.persistence.room.Embedded
+import androidx.room.Embedded
 
 data class JobWithRelations(
     @Embedded var job: Job,

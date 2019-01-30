@@ -1,9 +1,9 @@
 package com.nerdery.rtaza.jobtracker.ui.jobs
 
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.nerdery.rtaza.jobtracker.ui.util.*
 import kotlinx.android.synthetic.main.item_job.view.*
 

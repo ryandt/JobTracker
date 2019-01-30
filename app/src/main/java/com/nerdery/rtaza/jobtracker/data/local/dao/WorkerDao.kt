@@ -1,9 +1,9 @@
 package com.nerdery.rtaza.jobtracker.data.local.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.nerdery.rtaza.jobtracker.data.local.model.Worker
 import io.reactivex.Flowable
 import io.reactivex.Maybe

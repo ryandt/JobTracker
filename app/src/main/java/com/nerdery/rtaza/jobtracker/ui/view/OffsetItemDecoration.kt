@@ -1,8 +1,8 @@
 package com.nerdery.rtaza.jobtracker.ui.view
 
 import android.graphics.Rect
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * [RecyclerView.ItemDecoration] responsible for adding top, bottom, left, and right offsets to each item view of a
@@ -16,10 +16,10 @@ class OffsetItemDecoration(
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
-        offsetsRect: Rect,
-        itemView: View,
-        recyclerView: RecyclerView,
-        state: RecyclerView.State
+            offsetsRect: Rect,
+            itemView: View,
+            recyclerView: RecyclerView,
+            state: RecyclerView.State
     ) {
         with(offsetsRect) {
             if (recyclerView.getChildAdapterPosition(itemView) == 0) {

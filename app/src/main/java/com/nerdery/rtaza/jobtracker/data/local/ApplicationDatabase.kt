@@ -1,8 +1,8 @@
 package com.nerdery.rtaza.jobtracker.data.local
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.nerdery.rtaza.jobtracker.data.local.dao.JobDao
 import com.nerdery.rtaza.jobtracker.data.local.dao.WorkerDao
 import com.nerdery.rtaza.jobtracker.data.local.model.Job

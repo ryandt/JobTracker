@@ -27,7 +27,7 @@ class JobResponseFactory {
             ),
             workerResponse = WorkerResponse(919345446, "Phillip", "Jeffries", true),
             customerResponse = CustomerResponse("Dale", "Cooper", "4306665421"),
-            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(45),
+            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(15),
             customerNotes = "Diane, 7:30 am, February twenty-fourth. Entering town of Twin Peaks. Five miles south of the Canadian border, twelve miles west of the state line. Never seen so many trees in my life. As W.C. Fields would say, I'd rather be here than Philadelphia. It's fifty-four degrees on a slightly overcast day. Weatherman said rain. If you could get paid that kind of money for being wrong sixty percent of the time it'd beat working. Mileage is 79,345, gauge is on reserve, I'm riding on fumes here, I've got to tank up when I get into town. Remind me to tell you how much that is. Lunch was \$6.31 at the Lamplighter Inn. That's on Highway Two near Lewis Fork. That was a tuna fish sandwich on whole wheat, a slice of cherry pie and a cup of coffee. Damn good food. Diane, if you ever get up this way, that cherry pie is worth a stop."
         )
 
@@ -45,7 +45,7 @@ class JobResponseFactory {
             ),
             workerResponse = WorkerResponse(919937023, "Pete", "Martell", true),
             customerResponse = CustomerResponse("Laura", "Palmer", "4306652451"),
-            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(5),
+            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(1),
             customerNotes = "Nowhere... fast. And you're not coming."
         )
 
@@ -63,7 +63,7 @@ class JobResponseFactory {
             ),
             workerResponse = WorkerResponse(919012238, "Gordon", "Cole", true),
             customerResponse = CustomerResponse("Margaret", "Lanterman", "4306665421"),
-            eta = TimeUtil.getCurrentTimeMillis() + TimeUnit.MINUTES.toMillis(1),
+            eta = TimeUtil.getCurrentTimeMillis() - TimeUnit.MINUTES.toMillis(1),
             customerNotes = "A log is a portion of a tree. (Turning end of log to camera.) At the end of a crosscut log — many of you know this — there are rings. Each ring represents one year in the life of the tree. How long it takes to a grow a tree! I don't mind telling you some things. Many things I, I musn't say. Just notice that my fireplace is boarded up. There will never be a fire there. On the mantelpiece, in that jar, are some of the ashes of my husband. My log hears things I cannot hear. But my log tells me about the sounds, about the new words. Even though it has stopped growing larger, my log is aware."
         )
     }

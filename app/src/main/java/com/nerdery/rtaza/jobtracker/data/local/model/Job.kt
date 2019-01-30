@@ -1,6 +1,6 @@
 package com.nerdery.rtaza.jobtracker.data.local.model
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 @Entity(
     foreignKeys = [(ForeignKey(

@@ -1,7 +1,7 @@
 package com.nerdery.rtaza.jobtracker.ui.util
 
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import com.nerdery.rtaza.jobtracker.R
 import com.nerdery.rtaza.jobtracker.data.local.model.JobStatus
 import com.nerdery.rtaza.jobtracker.data.local.model.JobTask

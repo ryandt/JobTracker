@@ -1,8 +1,8 @@
 package com.nerdery.rtaza.jobtracker.ui.core
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.nerdery.rtaza.jobtracker.R
 import com.nerdery.rtaza.jobtracker.log.LogUtil
 import timber.log.Timber
@@ -49,7 +49,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onPause()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         Timber.tag(LogUtil.getLogTag(this))
         Timber.v("onSaveInstanceState")
         super.onSaveInstanceState(outState)

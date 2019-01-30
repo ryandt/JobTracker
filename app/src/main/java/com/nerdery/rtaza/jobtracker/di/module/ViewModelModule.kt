@@ -1,7 +1,7 @@
 package com.nerdery.rtaza.jobtracker.di.module
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.nerdery.rtaza.jobtracker.di.ViewModelFactory
 import com.nerdery.rtaza.jobtracker.di.ViewModelKey
 import com.nerdery.rtaza.jobtracker.ui.jobs.JobsViewModel

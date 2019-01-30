@@ -1,8 +1,8 @@
 package com.nerdery.rtaza.jobtracker.data.core
 
 import android.content.Context
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.nerdery.rtaza.jobtracker.R
 import java.net.HttpURLConnection
 

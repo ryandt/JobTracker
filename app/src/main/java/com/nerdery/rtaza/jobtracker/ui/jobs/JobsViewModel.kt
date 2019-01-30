@@ -1,11 +1,11 @@
 package com.nerdery.rtaza.jobtracker.ui.jobs
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.content.Context
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.nerdery.rtaza.jobtracker.R
 import com.nerdery.rtaza.jobtracker.data.core.Error
 import com.nerdery.rtaza.jobtracker.data.core.Resource
