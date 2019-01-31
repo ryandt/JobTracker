@@ -29,13 +29,9 @@ class JobsViewModel @Inject constructor(
     private val presentation: MutableLiveData<Presentation> = MutableLiveData()
     private val noJobsFound: MutableLiveData<Unit> = MutableLiveData()
 
-    fun getPresentation(): LiveData<Presentation> {
-        return presentation
-    }
+    fun getPresentation(): LiveData<Presentation> = presentation
 
-    fun getNoJobsFound(): LiveData<Unit> {
-        return noJobsFound
-    }
+    fun getNoJobsFound(): LiveData<Unit> = noJobsFound
 
     fun bind() {
         jobRepository.getJobs(true)
